@@ -1,6 +1,14 @@
 import time
 
-import os
+
+def setup():
+    import os
+    os.environ['PYTHONPATH'] = os.getcwd()
+    print(os.environ['PYTHONPATH'])
+
+
+setup()
+
 import orm.manage
 
 from Bili.daily.DailyTask import DailyTask
@@ -66,11 +74,5 @@ def main():
         BiLiveTask().run()
 
 
-def setup():
-    os.environ['PYTHONPATH'] = os.getcwd()
-    print(os.environ['PYTHONPATH'])
-
-
 if __name__ == '__main__':
-    setup()
     main()
