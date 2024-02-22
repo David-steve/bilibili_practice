@@ -1,11 +1,8 @@
-import sys, io
-
+import sys
 from pathlib import Path
 
 BASE_DIR = Path(__file__).parent.parent
 sys.path.append(str(BASE_DIR))
-
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="gb18030")
 
 import orm.manage
 import time
