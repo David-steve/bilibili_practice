@@ -23,4 +23,10 @@ jobs:
           python -m pip install --upgrade pip;
           pip install -r requirements.txt
 
+      - name: run tasks
+        run: |
+          export PYTHONPATH=`pwd`;
+          cd Bili;
+          python3 bilibili.py
+
 
