@@ -60,7 +60,7 @@ def check():
 
 def main():
     ret = check()
-    if ret:
+    if not ret:
         print(str(Bili.uname))
         print(str(Bili.mid))
         print(str(Bili.current_exp))
