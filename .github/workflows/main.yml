@@ -25,9 +25,6 @@ jobs:
 
       - name: run tasks
         run: |
-          python setup.py;
-
-          cd Bili;
-          python3 bilibili.py
+          python3 Bili/bilibili.py
 
 
