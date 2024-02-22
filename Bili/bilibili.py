@@ -59,9 +59,9 @@ def check():
 def main():
     ret = check()
     if ret:
-        print(Bili.uname)
-        print(Bili.mid)
-        print(Bili.current_exp)
+        print(str(Bili.uname))
+        print(str(Bili.mid))
+        print(str(Bili.current_exp))
 
     daily_task = DailyTask()
     daily_task.run()
