@@ -1,15 +1,12 @@
-import time
+import sys
 
-
-def setup():
-    import os
-    os.environ['PYTHONPATH'] = os.getcwd()
-    print(os.environ['PYTHONPATH'])
-
-
-setup()
+from pathlib import Path
+BASE_DIR = Path(__file__).parent.parent
+sys.path.append(str(BASE_DIR))
 
 import orm.manage
+import time
+
 
 from Bili.daily.DailyTask import DailyTask
 from Bili.db.models import ExpRecord
