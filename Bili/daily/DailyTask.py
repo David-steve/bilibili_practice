@@ -17,9 +17,13 @@ db = client["internet"]
 
 class DailyTask(Task):
     def run(self):
-        collection = db["bili_video_type"]
-        ret = collection.find_one({'分区名称': '时尚区'})
-        tid = ret['tid']
+
+        try:
+            collection = db["bili_video_type"]
+            ret = collection.find_one({'分区名称': '时尚区'})
+            tid = ret['tid']
+        except Exception as e:
+            tid = 36
 
         try:
 
