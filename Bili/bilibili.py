@@ -1,6 +1,6 @@
 import time
 
-import orm.manage
+from setup import setup
 from Bili.daily.DailyTask import DailyTask
 from Bili.db.models import ExpRecord
 from Bili.live.BiLiveTask import BiLiveTask

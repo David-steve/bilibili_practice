@@ -1,4 +1,10 @@
 import os
+import orm.manage
 
-os.environ['PYTHONPATH'] = os.getcwd()
-print(os.environ['PYTHONPATH'])
+
+def setup():
+    os.environ['PYTHONPATH'] = os.getcwd()
+    print(os.environ['PYTHONPATH'])
+
+
+setup()
