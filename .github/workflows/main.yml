@@ -26,6 +26,8 @@ jobs:
       - name: run tasks
         run: |
           export PYTHONPATH=`pwd`;
+          ntpdate pool.ntp.org;
+          date;
           openssl version;
           cd Bili;
           python3 bilibili.py
