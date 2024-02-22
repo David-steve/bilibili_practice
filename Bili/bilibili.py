@@ -1,12 +1,14 @@
-import sys
+import sys, io
 
 from pathlib import Path
+
 BASE_DIR = Path(__file__).parent.parent
 sys.path.append(str(BASE_DIR))
 
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="gb18030")
+
 import orm.manage
 import time
-
 
 from Bili.daily.DailyTask import DailyTask
 from Bili.db.models import ExpRecord
