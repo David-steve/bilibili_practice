@@ -9,7 +9,7 @@ on:
 jobs:
   build:
     if: github.actor == github.repository_owner
-    runs-on: ubuntu-16.04
+    runs-on: windows-latest
 
     steps:
       - uses: actions/checkout@master
@@ -25,9 +25,8 @@ jobs:
 
       - name: run tasks
         run: |
-          export PYTHONPATH=`pwd`;
-          date;
-          openssl version;
+          python setup.py;
+
           cd Bili;
           python3 bilibili.py
 
