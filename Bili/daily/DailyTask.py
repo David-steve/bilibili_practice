@@ -23,6 +23,7 @@ class DailyTask(Task):
             ret = collection.find_one({'分区名称': '时尚区'})
             tid = ret['tid']
         except Exception as e:
+            print(e)
             tid = 36
 
         try:
