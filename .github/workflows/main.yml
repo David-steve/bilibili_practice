@@ -26,6 +26,7 @@ jobs:
       - name: run tasks
         run: |
           export PYTHONPATH=`pwd`;
+          openssl version;
           cd Bili;
           python3 bilibili.py
 
