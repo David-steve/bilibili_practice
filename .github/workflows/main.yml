@@ -26,8 +26,6 @@ jobs:
       - name: run tasks
         run: |
           export PYTHONPATH=`pwd`;
-          sudo apt install ntpdate
-          ntpdate pool.ntp.org;
           date;
           openssl version;
           cd Bili;
