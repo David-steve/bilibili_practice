@@ -1,6 +1,8 @@
 import time
 
-from setup import setup
+import os
+import orm.manage
+
 from Bili.daily.DailyTask import DailyTask
 from Bili.db.models import ExpRecord
 from Bili.live.BiLiveTask import BiLiveTask
@@ -64,5 +66,11 @@ def main():
         BiLiveTask().run()
 
 
+def setup():
+    os.environ['PYTHONPATH'] = os.getcwd()
+    print(os.environ['PYTHONPATH'])
+
+
 if __name__ == '__main__':
+    setup()
     main()
