@@ -24,7 +24,7 @@ class DailyTask(Task):
             tid = ret['tid']
         except Exception as e:
             print(e)
-            tid = 36
+            tid = 155
 
         try:
 
