@@ -10,7 +10,7 @@ from Bili.BilibliInfo import BilibliInfo
 
 Bili = BilibliInfo.get_instance()
 
-uri = 'mongodb+srv://david:1877648mongodb@cluster0.nuinxks.mongodb.net/?retryWrites=true&w=majority'
+uri = 'mongodb+srv://david:1877648mongodb@cluster0.nuinxks.mongodb.net/?ssl=true&retryWrites=true&w=majority'
 client = MongoClient(uri)
 db = client["internet"]
 
