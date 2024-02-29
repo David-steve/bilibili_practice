@@ -23,6 +23,9 @@ jobs:
           python -m pip install --upgrade pip;
           pip install -r requirements.txt
 
+          sudo apt-get install openssl
+          sudo apt-get install libssl-dev
+
       - name: run tasks
         run: |
           python3 Bili/bilibili.py

@@ -25,6 +25,10 @@ DATABASES = {
         'PASSWORD': 'tl8ZUzUzra3krWnAeXSsSwRktHHdo5bK',
         'HOST': 'tiny.db.elephantsql.com',
         'PORT': '5432',
+        # 数据库使用的字符集
+        'CHARSET': 'utf8',
+        # 数据库时区设定
+        'TIME_ZONE': 'Asia/Shanghai',
     }
 
 }
