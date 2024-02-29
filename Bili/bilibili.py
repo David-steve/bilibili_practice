@@ -61,6 +61,8 @@ def main():
         print(str(Bili.uname))
         print(str(Bili.mid))
         print(str(Bili.current_exp))
+    else:
+        raise ValueError("cookies 过期")
 
     daily_task = DailyTask()
     daily_task.run()
