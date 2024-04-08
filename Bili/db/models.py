@@ -48,7 +48,7 @@ class ExpRecord(models.Model):
 class Cookies(models.Model):
     user_name = models.CharField(max_length=128, verbose_name="用户名称")
     user_id = models.CharField(max_length=128, verbose_name="用户UID")
-    website = models.CharField(max_length=128,verbose_name="站点名称")
+    website = models.CharField(max_length=128, verbose_name="站点名称")
     cookie_value = models.TextField(verbose_name="cookie value")
     state = models.SmallIntegerField(verbose_name="状态 0正常, -1过期")
     create_time = models.DateTimeField(verbose_name="创建时间", auto_now_add=True)
@@ -58,4 +58,18 @@ class Cookies(models.Model):
     class Meta:
         db_table = "t_cookies"
         verbose_name = "cookies"
+        verbose_name_plural = verbose_name
+
+
+class BilibiliTid(models.Model):
+    tid = models.IntegerField(verbose_name="tid")
+    pid = models.IntegerField(verbose_name="pid")
+    partition_name = models.CharField(max_length=128, verbose_name="分区名称")
+    create_time = models.DateTimeField(verbose_name="创建时间", auto_now_add=True)
+    update_time = models.DateTimeField(verbose_name="更新时间", auto_now=True)
+    del_flag = models.SmallIntegerField(verbose_name="删除标记", default=0)
+
+    class Meta:
+        db_table = "bili_tid"
+        verbose_name = "bili_tid"
         verbose_name_plural = verbose_name

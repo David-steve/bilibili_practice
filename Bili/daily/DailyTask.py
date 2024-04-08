@@ -4,31 +4,32 @@ from time import sleep
 from pymongo import MongoClient
 
 from Bili.Task import Task
-from Bili.db.models import ActionRecord, ExpRecord
+from Bili.db.models import ActionRecord, ExpRecord, BilibiliTid
 from Bili.util.Request import Request
 from Bili.BilibliInfo import BilibliInfo
 
 Bili = BilibliInfo.get_instance()
 
-uri = 'mongodb+srv://david:1877648mongodb@cluster0.nuinxks.mongodb.net/?ssl=true&retryWrites=true&w=majority'
-client = MongoClient(uri)
-db = client["internet"]
+# uri = 'mongodb+srv://david:1877648mongodb@cluster0.nuinxks.mongodb.net/?ssl=true&retryWrites=true&w=majority'
+# client = MongoClient(uri)
+# db = client["internet"]
 
 
 class DailyTask(Task):
     def run(self):
 
         try:
-            collection = db["bili_video_type"]
-            ret = collection.find_one({'分区名称': '时尚区'})
-            tid = ret['tid']
+            ret = BilibiliTid.objects.filter(partition_name='科技区', del_flag=0).first()
+            partitions = BilibiliTid.objects.filter(pid=ret.tid, del_flag=0).all()
+            offset = random.randint(0, len(partitions)-1)
+            tid = partitions[offset].tid
         except Exception as e:
             print(e)
             tid = 155
 
         try:
 
-            random.sample([i for i in range(10)], 5)
+            random.sample([i for i in range(10)], 6)
             regions = self.get_region(10, tid)
             # regions = self.get_top_recommend(10, 5)
 
@@ -45,7 +46,7 @@ class DailyTask(Task):
             ActionRecord.objects.create(video_name=title, aid=aid, bvid=bvid, way=0, action=ActionRecord.SHARE)
 
         except Exception as e:
-            print(e)
+            raise e
 
     def watch_videos(self, videos: iter):
         """
