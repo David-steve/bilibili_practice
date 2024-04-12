@@ -37,9 +37,11 @@ class DailyTask(Task):
             self.watch_videos(videos)
             # self.like_batch(videos)
 
-            title = videos[-1].get('title')
-            aid = videos[-1].get("aid")
-            bvid = videos[-1].get("bvid")
+            offset = random.randint(0, len(videos) - 1)
+            video = videos[offset]
+            title = video.get('title')
+            aid = video.get("aid")
+            bvid = video.get("bvid")
 
             ret = self.share(aid)
             print(f"分享视频 {title}", "成功" if ret.json().get("code") == 0 else "失败")
