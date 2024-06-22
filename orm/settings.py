@@ -20,6 +20,16 @@ BASE_DIR = '/opt/dolphinscheduler/data/root/sgDW/resource/'
 
 DATABASES = {
     'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mixed',
+        'USER': 'root',
+        'PASSWORD': 'mysql@2024',
+        'HOST': '110.41.145.76',
+        'PORT': '3306',
+        # 数据库使用的字符集
+        'CHARSET': 'utf8',
+    },
+    'debug': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'rmflogwj',
         'USER': 'rmflogwj',
