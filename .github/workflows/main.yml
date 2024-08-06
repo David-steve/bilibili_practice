@@ -26,7 +26,7 @@ jobs:
           sudo apt-get install openssl
           sudo apt-get install libssl-dev
 
-      - name: run tasks
+      - name: Run
         env:
           CONF: ${{ secrets.CONF }}
           DBENV: ${{ secrets.DBENV }}
