@@ -6,56 +6,30 @@ on:
   schedule:
     - cron: '0 1/24 * * *'
 
-
 jobs:
   build:
-
     if: github.actor == github.repository_owner
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest    
+    env: 
+     CONF: ${{ secrets.CONF }}
+     DBENV: ${{ secrets.DBENV }}
 
     steps:
-    - uses: actions/checkout@master
-    - name: Run
-      uses: actions/checkout@master
-      with:
-        python-version: 3.8.4
+      - uses: actions/checkout@master
+      - name: Set up Python 3.10
+        uses: actions/checkout@master
+        with:
+          python-version: 3.8.4
+
+      - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip;          
-           pip install -r requirements.txt;
-          python3 Bili/bilibili.py          
-          echo ${CONF}
-          echo "DBENV: $DBENV"
-      env: 
-        CONF: ${{ secrets.CONF }}
+          python -m pip install --upgrade pip;
+          pip install -r requirements.txt
 
-
-# jobs:
-#   build:
-#     if: github.actor == github.repository_owner
-#     runs-on: ubuntu-latest
-
-#     steps:
-#       - uses: actions/checkout@master
-#       - name: Set up Python 3.10
-#         uses: actions/checkout@master
-#         with:
-#           python-version: 3.8.4
-
-#       - name: Install dependencies
-#         run: |
-#           python -m pip install --upgrade pip;
-#           pip install -r requirements.txt
-
-#       - name: Run
-#         # env:
-#           # CONF: ${{ secrets.CONF }}
-#           # DBENV: ${{ secrets.DBENV }}
-#         run: |
-#              python3 Bili/bilibili.py
-#              echo "CONF: $CONF"
-#              echo "DBENV: $DBENV"
-#     env: 
-#      CONF: ${{ secrets.CONF }}
-#      DBENV: ${{ secrets.DBENV }}
+      - name: Run
+        run: |
+             python3 Bili/bilibili.py
+             echo "CONF: $CONF"
+             echo "DBENV: $DBENV"
 
 
