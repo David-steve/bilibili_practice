@@ -31,5 +31,6 @@ jobs:
           python3 Bili/bilibili.py
         env:
           CONF: ${{ secrets.CONF }}
+          DBENV: ${{ secrets.DBENV }}
 
 
