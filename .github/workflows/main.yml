@@ -27,8 +27,8 @@ jobs:
 
       - name: Run
         uses: actions/setup-python@v2
-        with:
-          run:
-             python3 Bili/bilibili.py
+        run:
+            python3 Bili/bilibili.py
+          echo $CONF
 
 
