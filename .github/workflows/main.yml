@@ -17,7 +17,6 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: Set up Python 3.10
-        uses: actions/setup-python@v2
         with:
           python-version: 3.10
 
@@ -27,8 +26,9 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run
-        run: |
-             echo $CONF
+        uses: actions/setup-python@v2
+        with:
+          run:
              python3 Bili/bilibili.py
 
 
