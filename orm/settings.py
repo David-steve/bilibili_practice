@@ -22,8 +22,6 @@ BASE_DIR = '/opt/dolphinscheduler/data/root/sgDW/resource/'
 
 # 读取系统环境变量 `ENV`
 env = os.environ['CONF']
-print("env: ", env, "--end----")
-print("DBENV", os.environ['DBENV'])
 
 if not env:
     exit()
