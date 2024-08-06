@@ -16,7 +16,7 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: Run
-      uses: coactions/setup-xvfb@master
+      uses: actions/checkout@master
       with:
         python-version: 3.8.4
         run: |
