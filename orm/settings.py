@@ -1,4 +1,6 @@
+import json
 from pathlib import Path
+import os
 
 # SECURITY WARNING: Modify this secret key if using in production!
 SECRET_KEY = "6few3nci_q_o@l1dlbk81%wcxe!*6r29yu629&d97!hiqat9fa"
@@ -18,16 +20,21 @@ BASE_DIR = '/opt/dolphinscheduler/data/root/sgDW/resource/'
 #     }
 # }
 
+# 读取系统环境变量 `ENV`
+env = os.environ.get('ENV')
+env = json.loads(env)
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'mixed',
-        'USER': 'root',
-        'PASSWORD': 'mysql@2024',
-        'HOST': '110.41.145.76',
-        'PORT': '3306',
+        'NAME': env['db_name'],
+        'USER': env['db_user'],
+        'PASSWORD': env['db_password'],
+        'HOST': env['db_host'],
+        'PORT': env['db_port'],
         # 数据库使用的字符集
         'CHARSET': 'utf8',
+        'timezone': 'Asia/Shanghai'
     },
     'debug': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -45,4 +52,5 @@ DATABASES = {
 INSTALLED_APPS = (
     "Bili.models",
     "Bili.db",
+    "stock.entity",
 )
