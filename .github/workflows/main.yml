@@ -30,9 +30,10 @@ jobs:
         env:
           CONF: ${{ secrets.CONF }}
           DBENV: ${{ secrets.DBENV }}
-        run: |
-           python3 Bili/bilibili.py
-           echo "CONF: $CONF"
-           echo "DBENV: $DBENV"
+        with:
+          run: |
+             python3 Bili/bilibili.py
+             echo "CONF: $CONF"
+             echo "DBENV: $DBENV"
 
 
