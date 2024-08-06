@@ -58,5 +58,5 @@ DATABASES = {
 INSTALLED_APPS = (
     "Bili.models",
     "Bili.db",
-    "stock.entity",
+    # "stock.entity",
 )
