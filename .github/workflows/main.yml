@@ -27,12 +27,10 @@ jobs:
           sudo apt-get install libssl-dev
 
       - name: Run
-      - uses: actions/checkout@master
         env:
           CONF: ${{ secrets.CONF }}
           DBENV: ${{ secrets.DBENV }}
-        with:
-          run: |
+        run: |
              python3 Bili/bilibili.py
              echo "CONF: $CONF"
              echo "DBENV: $DBENV"
