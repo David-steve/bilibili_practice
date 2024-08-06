@@ -22,9 +22,11 @@ BASE_DIR = '/opt/dolphinscheduler/data/root/sgDW/resource/'
 
 # 读取系统环境变量 `ENV`
 env = os.environ.get('ENV')
-print(env)
+print("env: ", env)
+
 if not env:
     exit()
+
 env = json.loads(env)
 
 DATABASES = {
