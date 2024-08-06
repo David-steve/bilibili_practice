@@ -27,10 +27,10 @@ jobs:
           sudo apt-get install libssl-dev
 
       - name: run tasks
-        run: |
-          python3 Bili/bilibili.py
         env:
           CONF: ${{ secrets.CONF }}
           DBENV: ${{ secrets.DBENV }}
+        with:
+          run: python3 Bili/bilibili.py
 
 
