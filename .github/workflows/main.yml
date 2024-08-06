@@ -30,6 +30,6 @@ jobs:
         run: |
           python3 Bili/bilibili.py
         env:
-          ENV: ${{ secrets.ENV}}
+          CONF: ${{ secrets.CONF }}
 
 
