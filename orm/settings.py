@@ -19,18 +19,11 @@ BASE_DIR = '/opt/dolphinscheduler/data/root/sgDW/resource/'
 #         'name': BASE_DIR + 'sg_erp.models',
 #     }
 # }
-a = {
-    "db_host": "110.41.145.76",
-    "db_port": "3306",
-    "db_user": "root",
-    "db_password": "mysql@2024",
-    "db_name": "mixed"
-}
 
 # 读取系统环境变量 `ENV`
-env = os.environ.get('CONF')
+env = os.environ['CONF']
 print("env: ", env, "--end----")
-print(os.environ)
+print("DBENV", os.environ['DBENV'])
 
 if not env:
     exit()
