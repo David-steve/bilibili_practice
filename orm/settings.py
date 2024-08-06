@@ -5,7 +5,7 @@ import os
 # SECURITY WARNING: Modify this secret key if using in production!
 SECRET_KEY = "6few3nci_q_o@l1dlbk81%wcxe!*6r29yu629&d97!hiqat9fa"
 TIME_ZONE = 'Asia/Shanghai'
-USE_TZ = True
+USE_TZ = False
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
