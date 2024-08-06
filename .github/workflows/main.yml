@@ -26,7 +26,6 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run
-        uses: actions/setup-python@v2
         run:
             python3 Bili/bilibili.py
             echo $CONF
