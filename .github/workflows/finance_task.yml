@@ -13,7 +13,7 @@ jobs:
   build:
     needs: [call-workflow]
 #    if: github.actor == github.repository_owner
-#     runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
     env:
      CONF: ${{ secrets.CONF }}
      DBENV: ${{ secrets.DBENV }}
