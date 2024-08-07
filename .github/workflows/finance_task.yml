@@ -7,12 +7,13 @@ on:
     - cron: '30 7/24 * * *'
 
 jobs:
-  call-workflow-2-in-local-repo:
+  call-env-setup-workflow:
     uses: ./.github/workflows/envioment_setup.yml
 
   build:
+    needs: [call-workflow]
 #    if: github.actor == github.repository_owner
-    runs-on: ubuntu-latest
+#     runs-on: ubuntu-latest
     env:
      CONF: ${{ secrets.CONF }}
      DBENV: ${{ secrets.DBENV }}
