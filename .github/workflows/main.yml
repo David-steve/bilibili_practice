@@ -29,6 +29,7 @@ jobs:
       - name: Run
         run: |
             python3 Bili/bilibili.py
+            python3 stock/finance_daily_task.py
             echo $CONF
 
 
