@@ -7,25 +7,26 @@ on:
     - cron: '30 7/24 * * *'
 
 jobs:
-  call-env-setup-workflow:
-    # 环境配置
-    uses: ./.github/workflows/envioment_setup.yml
-
   build:
-    needs: [call-env-setup-workflow]
     if: github.actor == github.repository_owner
     runs-on: ubuntu-latest
     env:
      CONF: ${{ secrets.CONF }}
 
     steps:
+      - uses: actions/checkout@master
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.10.14
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip;
+          pip install -r requirements.txt
+
       - name: Run
         run: |
-            pwd
-            ls bilibili_practice
-            ls
-            ls ../
-            tree
-#            python3 stock/finance_daily_task.py
+            python3 stock/finance_daily_task.py
 
 
