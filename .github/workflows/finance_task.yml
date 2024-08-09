@@ -20,11 +20,10 @@ jobs:
 
     steps:
       - name: Run
-        env:
-          CONF: ${{ secrets.CONF }}
-          DBENV: ${{ secrets.DBENV }}
+        uses: actions/setup-python@v2
         run: |
             pwd
+            ls bilibili_practice
             ls
             ls ../
             tree
