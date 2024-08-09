@@ -24,6 +24,10 @@ jobs:
           CONF: ${{ secrets.CONF }}
           DBENV: ${{ secrets.DBENV }}
         run: |
-            python3 stock/finance_daily_task.py
+            pwd
+            ls
+            ls ../
+            tree
+#            python3 stock/finance_daily_task.py
 
 
