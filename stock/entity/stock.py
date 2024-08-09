@@ -33,7 +33,9 @@ class FocusStock(models.Model):
     up_rate_remind = models.DecimalField(verbose_name="涨幅提醒", max_digits=10, decimal_places=2)
     down_rate_remind = models.DecimalField(verbose_name="跌幅提醒", max_digits=10, decimal_places=2)
     price_remind = models.DecimalField(verbose_name="到达指定股价提醒", max_digits=10, decimal_places=2)
+    del_flag = models.BooleanField(verbose_name="删除标记", default=False)
     create_time = models.DateTimeField(verbose_name="创建时间", auto_now_add=True)
+    update_time = models.DateTimeField(verbose_name="更新时间", auto_now=True)
 
     class Meta:
         db_table = "focus_stock"

@@ -8,15 +8,15 @@ on:
 
 jobs:
   call-env-setup-workflow:
+    # 环境配置
     uses: ./.github/workflows/envioment_setup.yml
 
   build:
     needs: [call-env-setup-workflow]
-#    if: github.actor == github.repository_owner
+    if: github.actor == github.repository_owner
     runs-on: ubuntu-latest
     env:
      CONF: ${{ secrets.CONF }}
-     DBENV: ${{ secrets.DBENV }}
 
     steps:
       - name: Run
@@ -24,7 +24,6 @@ jobs:
           CONF: ${{ secrets.CONF }}
           DBENV: ${{ secrets.DBENV }}
         run: |
-          echo "run"
-#            python3 stock/history_gold_price_service.py
+            python3 stock/finance_daily_task.py
 
 
