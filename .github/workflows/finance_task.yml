@@ -4,7 +4,8 @@ on:
   workflow_dispatch:
   repository_dispatch:
   schedule:
-    - cron: '30 7/24 * * *'
+    # 周一到周五 运行
+    - cron: '30 7/24 * * 1-5'
 
 jobs:
   build:
@@ -12,6 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
      CONF: ${{ secrets.CONF }}
+     PYTHONPATH: $PYTHONPATH:`pwd`
 
     steps:
       - uses: actions/checkout@master

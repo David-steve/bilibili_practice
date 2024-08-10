@@ -111,9 +111,11 @@ def get_stock_history_info(stock_code: str = 'SZ002594', begin_date: str = '2024
         if not stock:
             continue
 
-        # print(stock.date, stock.open_price, stock.high_price, stock.low_price, stock.close_price,
-        #       stock.change_price, stock.change_rate, stock.volume, stock.turnover_amt, stock.turnover_rate)
-        # exit()
+        stock_trace = StockTrace.objects.filter(stock=stock.stock, date=stock.date).first()
+        if stock_trace:
+            stock.id = stock_trace.id
+            stock.create_time = stock_trace.create_time
+
         try:
             stock.save()
         except Exception as e:
@@ -150,5 +152,5 @@ def get_today_stock_info():
 
 
 if __name__ == '__main__':
-    # get_stock_history_info(stock_code="01810", begin_date="2024-01-31", count="365")
-    get_today_stock_info()
+    get_stock_history_info(stock_code="SZ300750", begin_date="2024-08-07", count="365")
+    # get_today_stock_info()

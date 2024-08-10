@@ -54,6 +54,15 @@ class BilibliInfo:
             .format(self.sessdata, self.bili_jct, self.dedeuserid, self.buvid3) \
             .replace("'", "")
 
+    @staticmethod
+    def set_cookies_state(self, state):
+        cookie = Cookies.objects.filter(state=0, website="bilibili").first()
+        if not cookie:
+            exit()
+
+        cookie.state = state
+        cookie.save()
+
     @classmethod
     def get_instance(cls):
         if not cls.Bili:

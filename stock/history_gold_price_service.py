@@ -48,7 +48,11 @@ def get_history_price():
     # exit()
 
 
-def get_yesterday_price():
+def get_yesterday_gold_price():
+    """
+    获取昨天的金价行情
+    :return: None
+    """
     response = get_gold_price()
     json_data = response.json()
     rows = json_data['time']
@@ -56,8 +60,12 @@ def get_yesterday_price():
     gold_prices = parse([rows[-1]])
     for gold_price in gold_prices:
         print(gold_price)
-        gold_price.save()
+
+        try:
+            gold_price.save()
+        except Exception as e:
+            print(e)
 
 
 if __name__ == '__main__':
-    get_yesterday_price()
+    get_yesterday_gold_price()
