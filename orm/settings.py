@@ -1,4 +1,5 @@
 import json
+import sys
 from pathlib import Path
 import os
 
@@ -9,8 +10,8 @@ USE_TZ = False
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
-# BASE_DIR = Path(__file__).parent
-BASE_DIR = '/opt/dolphinscheduler/data/root/sgDW/resource/'
+BASE_DIR = Path(__file__).parent.parent
+sys.path.append(str(BASE_DIR))
 
 # DATABASES = {
 #     'default': {
