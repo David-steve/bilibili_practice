@@ -1,4 +1,4 @@
-from stock.history_gold_price_service import get_yesterday_gold_price
+from history_gold_price_service import get_yesterday_gold_price
 from stock_service import get_today_stock_info
 
 if __name__ == '__main__':
