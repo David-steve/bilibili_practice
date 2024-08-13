@@ -1,6 +1,4 @@
 import json
-import sys
-from pathlib import Path
 import os
 
 # SECURITY WARNING: Modify this secret key if using in production!
@@ -9,9 +7,6 @@ TIME_ZONE = 'Asia/Shanghai'
 USE_TZ = False
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
-
-BASE_DIR = Path(__file__).parent.parent
-sys.path.append(str(BASE_DIR))
 
 # DATABASES = {
 #     'default': {
