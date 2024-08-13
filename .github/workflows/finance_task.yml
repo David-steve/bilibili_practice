@@ -29,10 +29,10 @@ jobs:
 
       - name: Run
         run: |
+            export PYTHONPATH=$PYTHONPATH:`pwd`
             echo $PYTHONPATH
-#            python3 stock/finance_daily_task.py
+            python3 stock/finance_daily_task.py
         env:
-          PYTHONPATH: $PYTHONPATH:`pwd`
           CONF: ${{ secrets.CONF }}
 
 
