@@ -13,7 +13,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
      CONF: ${{ secrets.CONF }}
-     PYTHONPATH: $PYTHONPATH:`pwd`
 
     steps:
       - uses: actions/checkout@master
@@ -30,7 +29,6 @@ jobs:
       - name: Run
         run: |
             export PYTHONPATH=$PYTHONPATH:`pwd`
-            echo $PYTHONPATH
             python3 stock/finance_daily_task.py
         env:
           CONF: ${{ secrets.CONF }}

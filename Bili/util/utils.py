@@ -34,6 +34,17 @@ def get_current_date() -> str:
 curdate = get_current_date
 
 
+def week_day(date, input_format="%Y-%m-%d", start_week=0):
+    """
+    获取星期几
+    :param date: 日期
+    :param input_format: 输入格式
+    :param start_week: 一周的开始
+    :return:
+    """
+    return (datetime.strptime(date, input_format).weekday() + start_week % 7) % 7
+
+
 def date_format(date, input_format="%Y-%m-%d", output_format="%Y-%m-%d"):
     date_obj = datetime.strptime(date, input_format)
     return date_obj.strftime(output_format)
