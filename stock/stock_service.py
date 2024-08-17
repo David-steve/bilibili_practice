@@ -1,5 +1,7 @@
 from typing import Generator, Any, Dict
 
+from Bili.util.utils import week_day, curdate
+
 import requests
 from requests import Response
 
@@ -123,6 +125,12 @@ def get_stock_history_info(stock_code: str = 'SZ002594', begin_date: str = '2024
 
 
 def get_today_stock_info():
+    weekday = week_day(curdate(), start_week=1)
+
+    if weekday in (6, 7):
+        # 周六日闭市
+        return
+
     focus_stocks = FocusStock.objects.filter(del_flag=False)
 
     for focus_stock in focus_stocks:
