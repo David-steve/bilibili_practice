@@ -3,7 +3,7 @@ from time import sleep
 
 # from pymongo import MongoClient
 
-from Bili.Task import Task
+from Bili.daily.bilibili_base_task import BiliBaseTask
 from Bili.db.models import ActionRecord, ExpRecord, BilibiliTid
 from Bili.util.Request import Request
 from Bili.BilibliInfo import BilibliInfo
@@ -16,22 +16,13 @@ Bili = BilibliInfo.get_instance()
 # db = client["internet"]
 
 
-class DailyTask(Task):
+class DailyTask(BiliBaseTask):
     WATCH_VIDEO_NUM = 10
     GET_VIDEOS_NUM = 20
 
     def run(self):
+        tid = self.get_video_tid()
         try:
-            ret = BilibiliTid.objects.filter(partition_name='科技区', del_flag=0).first()
-            partitions = BilibiliTid.objects.filter(pid=ret.tid, del_flag=0).all()
-            offset = random.randint(0, len(partitions) - 1)
-            tid = partitions[offset].tid
-        except Exception as e:
-            print(e)
-            tid = 155
-
-        try:
-
             random.sample([i for i in range(10)], 6)
             # 获取推荐视频
             regions = self.get_region(self.GET_VIDEOS_NUM, tid)
@@ -54,6 +45,22 @@ class DailyTask(Task):
         except Exception as e:
             raise e
 
+    def get_video_tid(self):
+        """
+        获取视频分区tid
+        :return:
+        """
+        try:
+            ret = BilibiliTid.objects.filter(partition_name='科技区', del_flag=0).first()
+            partitions = BilibiliTid.objects.filter(pid=ret.tid, del_flag=0).all()
+            offset = random.randint(0, len(partitions) - 1)
+            tid = partitions[offset].tid
+        except Exception as e:
+            print(e)
+            tid = 155
+
+        return tid
+
     def watch_videos(self, videos: iter):
         """
         观看多个视频
@@ -71,7 +78,11 @@ class DailyTask(Task):
             ret = self.watch_video(aid, cid, progress)
             print(f"模拟观看视频 {title}", "成功" if ret.json().get("code") == 0 else "失败")
 
-            ActionRecord.objects.create(video_name=title, aid=aid, bvid=bvid, way=0, action=ActionRecord.WATCH)
+            try:
+                ActionRecord.objects.create(video_name=title, aid=aid, bvid=bvid, way=0, action=ActionRecord.WATCH)
+            except Exception as e:
+                print(e)
+
             sleep(random.randint(2, 10))
 
     def watch_video(self, aid, cid, progres):
@@ -192,7 +203,7 @@ class DailyTask(Task):
         :return:
         """
         url = 'https://api.bilibili.com/x/web-interface/archive/like'
-        body = f"aid={aid}&like={like}&csrf={Bili.bili_jct}&SESSDATA={Bili.sessdata}"
+        body = f"aid={aid}&like={like}&csrf={self.bili.bili_jct}&SESSDATA={self.bili.sessdata}"
 
         return Request.post(url, body=body)
 
@@ -209,6 +220,6 @@ class DailyTask(Task):
     def share(self, aid):
         url = "https://api.bilibili.com/x/web-interface/share/add"
         # body = f"aid={aid}&eab_x=2&ramval=0&source=web_normal&ga=1&csrf={Bili.bili_jct}".replace("'", '')
-        body = f"aid={aid}&eab_x=2&ramval=1&source=web_normal&ga=1&csrf={Bili.bili_jct}".replace("'", '')
+        body = f"aid={aid}&eab_x=2&ramval=1&source=web_normal&ga=1&csrf={self.bili.bili_jct}".replace("'", '')
 
         return Request.post(url, body=body)
