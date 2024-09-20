@@ -7,7 +7,9 @@ def check_weekday():
     weekday = week_day(curdate(), start_week=1)
 
     if weekday != 3:
-        exit()
+        return False
+
+    return True
 
 
 def withdraw():
@@ -15,7 +17,8 @@ def withdraw():
     etc 金额提现
     :return:
     """
-    check_weekday()
+    if not check_weekday():
+        return
 
     url = "https://hsc.lingruiwlkj.com/web/fronted.php"
 
@@ -26,9 +29,9 @@ def withdraw():
         "Host": "hsc.lingruiwlkj.com",
         "Content-Length": "84",
         "X-App-Version": "5.10.39",
-        "X-Token": "aHR0cHM6Ly93d3cuempoZWppYW5nLmNvbRNWGREfVnBGE1VNH0JeX0lIChMLBloGCzIJAFZKQg0dHEFGQxlIXkRHHxoEHDhHB01XWUVDRUULGwNVGgJCDgMYCQ82EhoIXAYwBAxWTkAO",
-        "X-Form-Id-List": '[{"value":"requestFormId:fail deprecated","type":0,"remains":1,"expires_at":"2024-08-28 13:51:59"}]',
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36 MicroMessenger/7.0.20.1781(0x6700143B) NetType/WIFI MiniProgramEnv/Windows WindowsWechat/WMPF WindowsWechat(0x6309080f)XWEB/11065",
+        "X-Token": "aHR0cHM6Ly93d3cuempoZWppYW5nLmNvbRNWGREfVnBGE1VNH0JeX0lIChMLBloGCzIJAFZKQg0dGkNGRRdLU0RHHxoEHDhHB01XWUVDRUULGwNVGgJCDgMYCQ82EhoIXAYwBAxWTkAO",
+        "X-Form-Id-List": "[]",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36 MicroMessenger/7.0.20.1781(0x6700143B) NetType/WIFI MiniProgramEnv/Windows WindowsWechat/WMPF WindowsWechat(0x6309080f)XWEB/11253",
         "X-App-Platform": "wxapp",
         "Content-Type": "application/x-www-form-urlencoded",
         "Xweb_xhr": "1",
