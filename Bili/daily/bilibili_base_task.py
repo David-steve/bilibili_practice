@@ -1,4 +1,4 @@
-from Bili.Task import Task
+from common.Task import Task
 from Bili.BilibliInfo import BilibliInfo
 
 
