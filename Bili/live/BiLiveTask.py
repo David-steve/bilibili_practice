@@ -1,6 +1,6 @@
 from time import sleep
 
-from Bili.Task import Task
+from common.Task import Task
 from Bili.util.Request import Request
 
 

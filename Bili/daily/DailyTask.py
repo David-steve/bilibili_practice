@@ -2,6 +2,7 @@ import random
 from time import sleep
 
 # from pymongo import MongoClient
+from typing import List
 
 from Bili.daily.bilibili_base_task import BiliBaseTask
 from Bili.db.models import ActionRecord, ExpRecord, BilibiliTid
@@ -146,7 +147,7 @@ class DailyTask(BiliBaseTask):
 
         return videos
 
-    def get_region(self, ps: int, rid):
+    def get_region(self, ps: int, rid) -> List[dict]:
         """
         获取b站推荐视频
         :param ps: 视频个数

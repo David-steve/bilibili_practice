@@ -22,7 +22,7 @@ class StockTrace(models.Model):
     volume = models.IntegerField(verbose_name="成交量")
     turnover_amt = models.DecimalField(verbose_name="成交额", max_digits=10, decimal_places=2)
     turnover_rate = models.DecimalField(verbose_name="换手率", max_digits=10, decimal_places=2)
-    create_time = models.DateTimeField(verbose_name="创建时间", auto_now_add=True)
+    create_time = models.DateTimeField(verbose_name="创建时间", auto_now=True)
 
     class Meta:
         db_table = "stock_trace"
@@ -33,6 +33,9 @@ class FocusStock(models.Model):
     up_rate_remind = models.DecimalField(verbose_name="涨幅提醒", max_digits=10, decimal_places=2)
     down_rate_remind = models.DecimalField(verbose_name="跌幅提醒", max_digits=10, decimal_places=2)
     price_remind = models.DecimalField(verbose_name="到达指定股价提醒", max_digits=10, decimal_places=2)
+    # yesterday_kline_10 = models.DecimalField(verbose_name="昨日10日K线图", max_digits=10, decimal_places=2)
+    # yesterday_kline_30 = models.DecimalField(verbose_name="昨日30日K线图", max_digits=10, decimal_places=2)
+    # yesterday_kline_50 = models.DecimalField(verbose_name="昨日50日K线图", max_digits=10, decimal_places=2)
     del_flag = models.BooleanField(verbose_name="删除标记", default=False)
     create_time = models.DateTimeField(verbose_name="创建时间", auto_now_add=True)
     update_time = models.DateTimeField(verbose_name="更新时间", auto_now=True)
