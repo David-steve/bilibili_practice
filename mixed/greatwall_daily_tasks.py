@@ -79,9 +79,9 @@ class GreatWallTask(Task):
     def run(self):
         self.sign()
 
-        # for i in range(3):
-        #     sleep(1)
-        #     self.do_daily_task()
+        for i in range(3):
+            sleep(1)
+            self.do_daily_task()
 
 
 if __name__ == '__main__':
