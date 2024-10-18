@@ -1,12 +1,12 @@
 from typing import Generator, Any, Dict
 
+import orm.manage
 from Bili.db.models import Cookies
 from Bili.util.utils import week_day, curdate
 
 import requests
 from requests import Response
 
-import orm.manage
 from Bili.util.utils import from_unix_time, to_unix_time, curdate, date_add, now
 from stock.entity.stock import Stock, StockTrace, FocusStock
 
@@ -162,5 +162,5 @@ def get_today_stock_info():
 
 
 if __name__ == '__main__':
-    get_stock_history_info(stock_code="SZ300750", begin_date="2024-08-07", count="365")
+    get_stock_history_info(stock_code="SZ002053", begin_date="2021-09-27", count="365")
     # get_today_stock_info()
