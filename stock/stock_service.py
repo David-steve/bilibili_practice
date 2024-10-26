@@ -10,7 +10,7 @@ from requests import Response
 from Bili.util.utils import from_unix_time, to_unix_time, curdate, date_add, now
 from stock.entity.stock import Stock, StockTrace, FocusStock
 
-
+cookie: Cookies = Cookies.objects.filter(website='雪球').first()
 def get_stock_info(stock_symbol: str = '', begin_date: str = '2024-08-06', count="7", mode="before"):
     timestamp = int(to_unix_time(begin_date))
 
@@ -24,7 +24,6 @@ def get_stock_info(stock_symbol: str = '', begin_date: str = '2024-08-06', count
 
     print(querystring)
     # exit()
-    cookie:Cookies = Cookies.objects.filter(website='雪球').first()
 
     headers = {
         "origin": "https://xueqiu.com",
@@ -39,6 +38,10 @@ def get_stock_info(stock_symbol: str = '', begin_date: str = '2024-08-06', count
 def response_parse(response: Response) -> Dict[str, Any]:
     json_data = response.json()
     error_code = json_data['error_code']
+
+    if error_code == '400016':
+        print("error_code:", error_code)
+        return {}
     data = json_data['data']
 
     if error_code != 0 or not data:
@@ -92,12 +95,27 @@ def parse(data: Dict[str, Any]) -> Generator[StockTrace, Any, None]:
                          turnover_amt=turnover_amt, turnover_rate=turnover_rate)
 
 
+def refresh_cookies():
+    url = "https://xueqiu.com/S/SZ000668"
+    headers = {
+        "origin": "https://xueqiu.com",
+        "referer": "https://xueqiu.com/S/SZ002594",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
+    }
+
+    response = requests.request("GET", url, headers=headers)
+    cookie.cookie_value = response.headers.get('Set-Cookie')
+    print("cookie: ", cookie.cookie_value)
+    cookie.save()
+
+
 def get_stock_history_info(stock_code: str = 'SZ002594', begin_date: str = '2024-08-01', count="7"):
     response = get_stock_info(stock_symbol=stock_code, begin_date=begin_date, count=count)
     data = response_parse(response)
 
     if not data:
         print("获取数据失败, status_code: ", response.status_code)
+        refresh_cookies()
         return
 
     print(response.text)

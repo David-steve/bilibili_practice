@@ -35,7 +35,7 @@ class GreatWallTask(Task):
             print(response.text)
 
     def run(self):
-        self.sign()
+        # self.sign()
 
         for i in range(3):
             sleep(1)
