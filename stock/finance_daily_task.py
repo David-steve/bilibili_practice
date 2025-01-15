@@ -5,7 +5,7 @@ from stock_service import get_today_stock_info
 
 
 if __name__ == '__main__':
+    withdraw()
     get_yesterday_gold_price()
     get_today_stock_info()
-    withdraw()
     GreatWallTask().run()

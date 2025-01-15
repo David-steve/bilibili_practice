@@ -24,7 +24,7 @@ def withdraw():
 
     querystring = {"_mall_id": "1847", "r": "api/balance/cash"}
 
-    payload = "price=5&type=alipay&use_qrcode=0&name=赖锦威&mobile=18776666967"
+    payload = {"price": 5, "type": "alipay", "use_qrcode": 0, "name": "赖锦威", "mobile": "18776666967"}
     headers = {
         "Host": "hsc.lingruiwlkj.com",
         "Content-Length": "84",
